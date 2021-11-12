@@ -1,8 +1,8 @@
 django boilerplate accounts with social login
 =============================================
 
-### core app
-### accounts app
+### * core app
+### * accounts app
 
 kakao
 -----
