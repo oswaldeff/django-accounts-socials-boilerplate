@@ -1,4 +1,4 @@
-django accounts with social logins (naver, kakao)
+django boilerplate accounts with social login(kakao, naver)
 =================================================
 
 ### core app
