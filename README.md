@@ -1,5 +1,10 @@
-django boilerplate accounts with social login(kakao, naver)
-=================================================
+django boilerplate accounts with social login
+=============================================
 
 ### core app
 ### accounts app
+
+kakao
+-----
+naver
+-----
