@@ -1,10 +1,10 @@
 django boilerplate accounts with social login
 =============================================
 
-* core app
-* accounts app
-
 kakao
 -----
 naver
 -----
+
+* core app
+* accounts app
