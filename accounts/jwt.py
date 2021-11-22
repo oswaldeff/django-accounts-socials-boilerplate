@@ -4,7 +4,7 @@ import os
 import jwt
 import datetime
 
-def jwt_publish(platform, login_id):
+def jwt_publish(login_id):
     jwt_key = os.environ.get('JWT_KEY')
     jwt_expiration = datetime.datetime.utcnow() + datetime.timedelta(seconds=60*60*6)
     access_jwt = jwt.encode({'exp': jwt_expiration, 'login id': login_id}, key=jwt_key['SECRET KEY'], algorithm=jwt_key['ALGORITHM'])
