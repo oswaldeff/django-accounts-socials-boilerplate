@@ -22,7 +22,7 @@ def jwt_authorization(func):
             payload = jwt.decode(access_jwt, key=jwt_key['SECRET KEY'], algorithms=jwt_key['ALGORITHM'])
             login_id = payload['login id']
             try:
-                login_user = User.objects.get(id=login_id)
+                login_user = User.objects.get(login_id=login_id)
             except:
                 return JsonResponse({'message': 'GET USER ERROR'}, status=400)
             
