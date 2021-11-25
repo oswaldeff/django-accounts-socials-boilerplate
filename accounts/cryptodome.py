@@ -14,7 +14,7 @@ class AESCipher:
     
     def get_private_key(random):
         salt = hashlib.sha256(os.environ.get('salt'))
-        kdf = PBKDF2(random, salt, 64, 1000)
+        kdf = PBKDF2(random, salt, 64, 1000) # PBKDF2(PRF, Password, Salt, iteration, DLen)
         key = kdf[:32]
         return key
     
