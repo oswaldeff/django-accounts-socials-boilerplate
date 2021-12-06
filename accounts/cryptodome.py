@@ -1,6 +1,6 @@
-from Cryptodome.Cipher          import AES
-from Cryptodome                 import Random
-from Cryptodome.Protocol.KDF    import PBKDF2
+from Crypto.Cipher          import AES
+from Crypto                 import Random
+from Crypto.Protocol.KDF    import PBKDF2
 import base64
 import hashlib
 import os
@@ -10,10 +10,10 @@ class AESCipher:
         self.blocksize = 16
         self.pad = lambda s: s + (self.blocksize - len(s) % self.blocksize) * chr(self.blocksize - len(s) % self.blocksize)
         self.unpad = lambda s: s[0:-s[-1]]
-        self.key = hashlib.sha256(os.environ.get('salt'))
+        self.key = hashlib.sha256(os.environ.get('SALT'))
     
     def get_private_key(random):
-        salt = hashlib.sha256(os.environ.get('salt'))
+        salt = hashlib.sha256(os.environ.get('SALT'))
         kdf = PBKDF2(random, salt, 64, 1000) # PBKDF2(PRF, Password, Salt, iteration, DLen)
         key = kdf[:32]
         return key
