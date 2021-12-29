@@ -15,8 +15,8 @@ class UserManager(BaseUserManager):
     
     
     def create_user(self, username, phone=None, email=None, password=None, **extra_fields):
-        if not password:
-            raise ValueError('Password is Required')
+        # if not password:
+        #     raise ValueError('Password is Required')
         user = self.model(username=username)
         user.set_password(password)
         user.save(using=self._db)

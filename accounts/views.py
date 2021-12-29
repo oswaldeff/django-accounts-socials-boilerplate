@@ -1,5 +1,5 @@
 from .models import User
-from .serializers import *
+from .serializers import UserSerializer
 from django.contrib.auth.hashers import make_password, check_password
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
