@@ -1,4 +1,4 @@
-django boilerplate accounts with social login
+🔌  django boilerplate accounts with social login
 =============================================
 
 
