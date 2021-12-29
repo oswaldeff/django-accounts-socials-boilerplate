@@ -2,9 +2,17 @@
 =============================================
 
 
+database
+-----
+#### config/settings/base.py
+> db.sqlite3 (django default)
+
+> DB setting (required)
+
+
 local
 -----
-#### acccounts/models
+#### acccounts/models.py
 - User
 > username (required)
 
@@ -12,14 +20,14 @@ local
 
 > phone (optional)
 
-#### accounts/views
+#### accounts/views.py
 - UserSignUpView (needs overriding)
 - UserSignInView (needs overriding)
 
 
 naver
 -----
-#### accounts/socials
+#### accounts/socials.py
 - SocialLoginProfile.naver
 > access code (required)
 
@@ -34,7 +42,7 @@ naver
 
 kakao
 -----
-#### accounts/socials
+#### accounts/socials.py
 - SocialLoginProfile.kakao
 > access code (required)
 
@@ -46,7 +54,7 @@ kakao
 
 module
 -----
-#### ./requirements/base.txt
+#### requirements/base.txt
 > simple jwt (required)
 
 tree
