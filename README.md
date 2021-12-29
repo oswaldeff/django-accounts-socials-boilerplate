@@ -52,7 +52,7 @@ kakao
 
 
 
-module
+authentication
 -----
 #### requirements/base.txt
 > simple jwt (required)
