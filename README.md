@@ -7,7 +7,9 @@ local
 #### acccounts/models
 - User
 > username (required)
+
 > password (optional)
+
 > phone (optional)
 
 #### accounts/views
