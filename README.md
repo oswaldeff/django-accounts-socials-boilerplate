@@ -39,7 +39,7 @@ kakao
 module
 -----
 #### ./requirements/base.txt
-
+- simple jwt (required)
 
 tree
 -----
