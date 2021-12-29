@@ -20,9 +20,13 @@ naver
 #### accounts/socials
 - SocialLoginProfile.naver
 > access code (required)
+
 > client id (required)
+
 > client secret (required)
+
 > state (required)
+
 > profile data response setting (optional)
 
 
@@ -31,7 +35,9 @@ kakao
 #### accounts/socials
 - SocialLoginProfile.kakao
 > access code (required)
+
 > client id (required)
+
 > profile data response setting (optional)
 
 
