@@ -7,7 +7,7 @@ database
 #### config/settings/base.py
 > db.sqlite3 (django default)
 
-> DB setting (required)
+> DATABASES setting (required)
 
 
 local
