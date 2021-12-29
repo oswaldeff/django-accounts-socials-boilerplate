@@ -5,8 +5,7 @@
 database
 -----
 #### config/settings/base.py
-> db.sqlite3 (django default)
-
+> db.sqlite3 (django default) <br>
 > DATABASES setting (required)
 
 
@@ -14,10 +13,8 @@ local
 -----
 #### acccounts/models.py
 - User
-> username (required)
-
-> password (optional)
-
+> username (required) <br>
+> password (optional) <br>
 > phone (optional)
 
 #### accounts/views.py
@@ -29,14 +26,10 @@ naver
 -----
 #### accounts/socials.py
 - SocialLoginProfile.naver
-> access code (required)
-
-> client id (required)
-
-> client secret (required)
-
-> state (required)
-
+> access code (required) <br>
+> client id (required) <br>
+> client secret (required) <br>
+> state (required) <br>
 > profile data response setting (optional)
 
 
@@ -44,18 +37,16 @@ kakao
 -----
 #### accounts/socials.py
 - SocialLoginProfile.kakao
-> access code (required)
-
-> client id (required)
-
+> access code (required) <br>
+> client id (required) <br>
 > profile data response setting (optional)
-
 
 
 authentication
 -----
 #### requirements/base.txt
 > simple jwt (required)
+
 
 tree
 -----
