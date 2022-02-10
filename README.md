@@ -1,56 +1,55 @@
-🔌  django boilerplate accounts with social login
-=============================================
+# 🔌 django boilerplate accounts with social login
 
+## database
 
-database
------
 #### config/settings/base.py
+
 > db.sqlite3 (django default) <br>
-> DATABASES setting (required)
+> DATABASES setting (optional)
 
+## local
 
-local
------
 #### acccounts/models.py
+
 - User
-> username (required) <br>
-> password (optional) <br>
-> phone (optional)
+  > username (required) <br>
+  > password (optional) <br>
+  > phone (optional)
 
 #### accounts/views.py
+
 - UserSignUpView (needs overriding)
 - UserSignInView (needs overriding)
 
+## naver
 
-naver
------
 #### accounts/socials.py
+
 - SocialLoginProfile.naver
-> access code (required) <br>
-> client id (required) <br>
-> client secret (required) <br>
-> state (required) <br>
-> profile data response setting (optional)
+  > access code (required) <br>
+  > client id (required) <br>
+  > client secret (required) <br>
+  > state (required) <br>
+  > profile data response setting (optional)
 
+## kakao
 
-kakao
------
 #### accounts/socials.py
+
 - SocialLoginProfile.kakao
-> access code (required) <br>
-> client id (required) <br>
-> profile data response setting (optional)
+  > access code (required) <br>
+  > client id (required) <br>
+  > profile data response setting (optional)
 
+## authentication
 
-authentication
------
 #### requirements/base.txt
+
 > simple jwt (required)
 
+## tree
 
-tree
------
-``` shell
+```shell
 django-accounts-socials-boilerplate
 ├── README.md
 ├── accounts
