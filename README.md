@@ -61,6 +61,7 @@ django-accounts-socials-boilerplate
 │   ├── serializers.py
 │   ├── socials.py
 │   ├── tests.py
+│   ├── validators.py
 │   └── views.py
 ├── config
 │   ├── __init__.py
@@ -73,6 +74,7 @@ django-accounts-socials-boilerplate
 │   ├── __init__.py
 │   ├── admin.py
 │   ├── apps.py
+│   ├── exceptions.py
 │   ├── migrations
 │   ├── models.py
 │   ├── tests.py
