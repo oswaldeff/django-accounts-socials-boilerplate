@@ -1,5 +1,6 @@
 from .models import User
 from .serializers import UserSerializer
+from core.exceptions import CustomKeyNotFoundAPIException
 from django.contrib.auth.hashers import make_password, check_password
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
@@ -92,8 +93,8 @@ class UserSignUpView(TokenObtainPairView, TokenViewBase):
             username = request.data['username']
             phone_number = request.data['phone_number']
             password = request.data['password']
-        except KeyError:
-            return JsonResponse({'error': 'SIGNUP KEY ERROR'}, status=400)
+        except:
+            return CustomKeyNotFoundAPIException()
         
         response = check_username_duplication(username=username)
         if response:
@@ -147,8 +148,8 @@ class UserSignInView(TokenObtainPairView, TokenViewBase):
         try:
             username = request.data['username']
             password = request.data['password']
-        except KeyError:
-            return JsonResponse({'error': 'SIGNIN KEY ERROR'}, status=400)
+        except:
+            return CustomKeyNotFoundAPIException()
         
         response = check_phone_password_correct(username, password)
         if response:
@@ -194,8 +195,8 @@ class TokenRefreshView(TokenViewBase):
         
         try:
             refresh = request.data['refresh']
-        except KeyError:
-            return JsonResponse({'error': 'TOKEN KEY ERROR'}, status=400)
+        except:
+            return CustomKeyNotFoundAPIException()
         
         serializer = self.get_serializer(data=request.data)
         
