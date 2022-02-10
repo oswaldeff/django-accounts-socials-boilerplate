@@ -1,7 +1,8 @@
 from .models import User
+from .validators import username_duplication, phone_duplication, password_validation, phone_password_correction
 from .serializers import UserSerializer
 from core.exceptions import CustomKeyNotFoundAPIException
-from django.contrib.auth.hashers import make_password, check_password
+from django.contrib.auth.hashers import make_password
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 from rest_framework import status
@@ -12,57 +13,9 @@ from rest_framework_simplejwt.authentication import AUTH_HEADER_TYPES
 from rest_framework_simplejwt.exceptions import InvalidToken, TokenError
 from drf_yasg.utils import swagger_auto_schema
 from drf_yasg import openapi
-import re
 
 
 # Create your views here.
-def check_username_duplication(username):
-    
-    if User.objects.filter(username=username).exists():
-        return JsonResponse({'error': 'INVALID USERNAME, ALREADY USED'}, status=400)
-    
-    return None
-
-def check_phone_duplication(phone_number):
-    
-    if User.objects.filter(phone_number=phone_number).exists():
-        return JsonResponse({'error': 'INVALID PHONE NUMBER, ALREADY USED'}, status=400)
-    
-    return None
-
-
-def check_password_validation(password):
-    
-    if len(password)>int(16) or len(password)<int(8):
-        return JsonResponse({'error': 'INVALID PASSWORD, PLEASE CHECK PASSWORD LENGTH'}, status=400)
-    
-    if re.search('[`~!@#$%^&*(),<.>/?]+', password) is None:
-        return JsonResponse({'error': 'INVALID PASSWORD, PLEASE CHECK PASSWORD INCLUDES SPECIAL LETTER'}, status=400)
-    
-    if re.search('[0-9]', password) is None:
-        return JsonResponse({'error': 'INVALID PASSWORD, PLEASE CHECK PASSWORD INCLUDES NUMBER'}, status=400)
-    
-    if re.search('[a-z]', password) is None:
-        return JsonResponse({'error': 'INVALID PASSWORD, PLEASE CHECK PASSWORD INCLUDES SMALL LETTER'}, status=400)
-    
-    if re.search('[A-Z]', password) is None:
-        return JsonResponse({'error': 'INVALID PASSWORD, PLEASE CHECK PASSWORD INCLUDES LARGE LETTER'}, status=400)
-    
-    return None
-
-
-def check_phone_password_correct(username, password):
-    
-    if not User.objects.filter(username=username).exists():
-        return JsonResponse({'error': 'ACCOUNT NOT EXIST, PLEASE CHECK YOUR USERNAME'}, status=404)
-    
-    encoded = User.objects.get(username=username).password
-    response = check_password(password, encoded, setter=None, preferred='default')
-    
-    if response is False:
-        return JsonResponse({'error': 'PLEASE CHECK YOUR PASSWORD'}, status=404)
-    
-    return None
 
 
 class UserSignUpView(TokenObtainPairView, TokenViewBase):
@@ -97,15 +50,9 @@ class UserSignUpView(TokenObtainPairView, TokenViewBase):
         except:
             return CustomKeyNotFoundAPIException()
         
-        response = check_username_duplication(username=username)
-        if response:
-            return response
-        response = check_phone_duplication(phone_number=phone_number)
-        if response:
-            return response
-        response = check_password_validation(password=password)
-        if response:
-            return response
+        username_duplication(username=username)
+        phone_duplication(phone_number=phone_number)
+        password_validation(password=password)
         
         password = make_password(password=password, salt=None, hasher='default')
         user_object = User.objects.create(username=username, password=password)
@@ -152,9 +99,7 @@ class UserSignInView(TokenObtainPairView, TokenViewBase):
         except:
             return CustomKeyNotFoundAPIException()
         
-        response = check_phone_password_correct(username, password)
-        if response:
-            return response
+        phone_password_correction(username, password)
         
         user_object = User.objects.get(username=username)
         
