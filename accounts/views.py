@@ -1,6 +1,5 @@
 from .models import User
 from .validators import username_duplication, phone_duplication, password_validation, phone_password_correction
-from .serializers import UserSerializer
 from core.exceptions import CustomKeyNotFoundAPIException
 from django.contrib.auth.hashers import make_password
 from django.views.decorators.csrf import csrf_exempt
