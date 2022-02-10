@@ -4,6 +4,7 @@ from core.exceptions import CustomKeyNotFoundAPIException
 from django.contrib.auth.hashers import make_password, check_password
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
+from rest_framework import status
 from rest_framework.permissions import AllowAny
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer, TokenRefreshSerializer
 from rest_framework_simplejwt.views import TokenViewBase, TokenObtainPairView
@@ -120,7 +121,7 @@ class UserSignUpView(TokenObtainPairView, TokenViewBase):
         response['account'] = User.objects.filter(id=str(user_object)).values('id', 'username', 'created')[0]
         response['token'] = serializer.validated_data
         
-        return JsonResponse(response, json_dumps_params={'ensure_ascii': False}, status=201)
+        return JsonResponse(response, json_dumps_params={'ensure_ascii': False}, status=status.HTTP_201_CREATED)
 
 
 class UserSignInView(TokenObtainPairView, TokenViewBase):
@@ -168,7 +169,7 @@ class UserSignInView(TokenObtainPairView, TokenViewBase):
         response['account'] = User.objects.filter(id=str(user_object)).values('id', 'username', 'created')[0]
         response['token'] = serializer.validated_data
         
-        return JsonResponse(response, json_dumps_params={'ensure_ascii': False}, status=200)
+        return JsonResponse(response, json_dumps_params={'ensure_ascii': False}, status=status.HTTP_200_OK)
 
 
 class TokenRefreshView(TokenViewBase):
@@ -209,4 +210,4 @@ class TokenRefreshView(TokenViewBase):
         response['message'] = 'SUCCESSFULLY TOKEN REFRESHED'
         response['token'] = serializer.validated_data
         
-        return JsonResponse(response, json_dumps_params={'ensure_ascii': False}, status=200)
+        return JsonResponse(response, json_dumps_params={'ensure_ascii': False}, status=status.HTTP_200_OK)
